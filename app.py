@@ -2,7 +2,7 @@ import SocketServer
 from BaseHTTPServer import BaseHTTPRequestHandler
 
 def some_function():
-    print "some_function got called"
+    print("some_function got called")
 
 class MyHandler(BaseHTTPRequestHandler):
     def do_GET(self):
