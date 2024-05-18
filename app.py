@@ -12,5 +12,6 @@ class MyHandler(BaseHTTPRequestHandler):
 
         self.send_response(200)
 
+socketserver.TCPServer.allow_reuse_address = True
 httpd = socketserver.TCPServer(("", 8085), MyHandler)
 httpd.serve_forever()
