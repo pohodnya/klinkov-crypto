@@ -12,5 +12,5 @@ class MyHandler(BaseHTTPRequestHandler):
 
         self.send_response(200)
 
-httpd = socketserver.TCPServer(("", 8080), MyHandler)
+httpd = socketserver.TCPServer(("", 8085), MyHandler)
 httpd.serve_forever()
