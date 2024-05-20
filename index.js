@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import express from 'express';
 import FormData from "form-data";
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 5001
 
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
@@ -20,6 +20,10 @@ app.use(express.json());
 // Добавляем middleware для обработки данных в формате x-www-form-urlencoded
 app.use(express.urlencoded({ extended: true }));
 
+app.get('/', (req, res) => {
+  res.send('Klinkov Cryptocloud Hadler');
+});
+
 app.post('/cryptocloud_postback', (req, res) => {
   const { action, key, params } = req.body;
   const decodedString = atob(params)
@@ -36,12 +40,12 @@ app.post('/cryptocloud_postback', (req, res) => {
     body: formData,
     headers: {Accept: 'application/json; q=1.0, */*; q=0.1'}
   }).then((response) => {
-    response.json().then((json) => {
+    response.json().then((_json) => {
       res.json({ message: 'Postback received' });
     })
   })
 })
 
-app.listen(port, () => {
-  console.log(`Server app is starting at port${port}`);
+app.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`);
 });
