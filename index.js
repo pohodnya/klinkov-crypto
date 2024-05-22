@@ -27,10 +27,12 @@ app.get('/', (req, res) => {
 app.post('/cryptocloud_postback', (req, res) => {
   const { action, key, params } = req.body;
   const decodedString = atob(params)
+  console.log(decodedString);
   const updatedParams = JSON.parse(decodedString)
   delete(updatedParams.deal.deal_status)
   updatedParams.deal.deal_is_paid = '1'
   updatedParams.deal.payment_type = 'OTHER'
+  console.log(JSON.stringify(updatedParams));
   const encodedUpdatedParams = btoa(JSON.stringify(updatedParams))
   let formData = new FormData();
   formData.append('action', action);
