@@ -31,7 +31,7 @@ app.post('/cryptocloud_postback', (req, res) => {
   const updatedParams = JSON.parse(decodedString)
   delete(updatedParams.deal.deal_status)
   updatedParams.deal.deal_is_paid = '1'
-  updatedParams.deal.payment_type = 'OTHER'
+  updatedParams.deal.payments_type = 'OTHER'
   console.log(JSON.stringify(updatedParams));
   const encodedUpdatedParams = btoa(JSON.stringify(updatedParams))
   let formData = new FormData();
